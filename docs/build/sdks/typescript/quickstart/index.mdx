@@ -1,0 +1,104 @@
+---
+title: Pieces Wrapper Typescript SDK Quick Start
+description: Quickly set up the Pieces Wrapper Typescript SDK
+---
+
+# Typescript QuickStart
+
+Follow these steps to use the Pieces Typescript SDK.
+
+## Download Pieces OS
+
+:::info
+
+You must either have Pieces OS installed on your local machine or have access to a remote instance of Pieces OS to use this SDK.
+
+:::
+
+Download [**Pieces OS**](/installation-getting-started/pieces-os) for your operating system:
+
+- [**macOS**](/installation-getting-started/macos)
+- [**Windows**](/installation-getting-started/windows)
+- [**Linux**](/installation-getting-started/linux)
+
+## Install Typescript SDK
+
+Use `npm` to install the Pieces Typescript SDK using the following command:
+
+```sh
+npm install @pieces.app/pieces-os-client
+```
+
+Or use `pnpm` to install the Pieces Typescript SDK using the following command:
+
+```sh
+pnpm add @pieces.app/pieces-os-client
+```
+
+Or use `yarn` to install the Pieces Typescript SDK using the following command:
+
+```sh
+yarn add @pieces.app/pieces-os-client
+```
+
+:::info
+
+The order in which npm packages are saved and added to your dependencies is important and will affect your installation flow.
+
+If you are having issues with your installation, it is likely due to a conflict in Typescript versions. Run `npm uninstall typescript` and then go back and perform all other npm installations before reinstalling typescript.
+
+:::
+
+## Initialize SDK
+
+After installing the SDK, you must initialize the SDK with your base URL. The base URL will depend on your setup.
+
+If you are using a local instance of Pieces OS:
+- On macOS/Windows, use http://localhost:1000
+- On Linux, use http://localhost:5323
+
+If you are using a remote instance of Pieces OS, use the URL you have set up for that.
+
+## Getting started
+
+Create a Typescript script to test the connection to the Pieces OS server. Create a `main.ts` file to test the connection.
+
+```typescript
+// const pieces = require('@pieces.app/pieces-os-client'); // can import library using require
+import * as pieces from '@pieces.app/pieces-os-client'; // can import library using import
+import os from 'os';
+
+const platform = os.platform();
+let port = 1000;
+
+// Defining the port based on the operating system. For Linux, the port is 5323, and for macOS/Windows, the port is 1000.
+if (platform === 'linux') {
+  port = 5323;
+} else {
+  port = 1000;
+}
+
+// The `hostPath` defaults to http://localhost:1000, however we need to change it to the correct port based on the operating system.
+const configuration = Pieces.Configuration({
+  hostPath: `http://localhost:${port}`
+})
+// Create an instance of the WellKnownApi class
+const apiInstance = new Pieces.WellKnownApi(configuration)
+
+apiInstance.getWellKnownHealth().then((data: string) => {
+  console.log(data) // ok
+}).catch((error: unknown) => console.error(error))
+```
+
+In the code snippet above, we use the platform package to determine the base URL based on the operating system.
+
+Run the following command to execute the script:
+
+```sh
+ts-node main.ts
+```
+
+## Community
+If you have created your own SDK or any other technology-specific integration and would like us to list it here under community-maintained SDKs/integrations, please [contact us](https://github.com/pieces-app/opensource/discussions).
+
+If you would like to help us expand Pieces' list of SDKs, you can start a new discussion on our [Open Source Discussions](https://github.com/pieces-app/opensource/discussions), and you can also join our [Discord](https://discord.gg/getpieces).

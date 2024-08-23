@@ -574,6 +574,11 @@ const sidebars: SidebarsConfig = {
       id: 'build/sdks/python/index',
       label: '📚 Python',
     },
+    {
+      type: 'doc',
+      id: 'build/sdks/typescript/index',
+      label: '📚 Typescript',
+    },
     // {
     //   type: 'doc',
     //   id: 'build/tutorials/index',
@@ -634,6 +639,34 @@ const sidebars: SidebarsConfig = {
       {
         type: 'doc',
         id: 'build/sdks/python/copilot/index',
+        label: 'Copilot',
+      },
+    ],
+     // Typescript SDK WrapperSidebar
+     typescriptSDKWrapperSidebar: [
+      {
+        type: 'ref',
+        id: 'build/index',
+        label: '← Back to Build',
+      },
+      {
+        type: 'doc',
+        id: 'build/sdks/typescript/index',
+        label: 'Overview',
+      },
+      {
+        type: 'doc',
+        id: 'build/sdks/typescript/quickstart/index',
+        label: 'Quickstart',
+      },
+      {
+        type: 'doc',
+        id: 'build/sdks/typescript/assets/index',
+        label: 'Assets',
+      },
+      {
+        type: 'doc',
+        id: 'build/sdks/typescript/copilot/index',
         label: 'Copilot',
       },
     ],
